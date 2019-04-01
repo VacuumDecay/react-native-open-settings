@@ -26,14 +26,9 @@ public class OpenSettings extends ReactContextBaseJavaModule {
     //region React Native Methods
     @ReactMethod
     public void openSettings() {
-        final Intent i = new Intent();
-        i.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-        i.addCategory(Intent.CATEGORY_DEFAULT);
-        i.setData(Uri.parse("package:" + reactContext.getPackageName()));
+        final Intent i = new Intent(android.provider.Settings.ACTION_SETTINGS);
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        i.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        i.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-        reactContext.startActivity(i);
+        reactContext.startActivity(new Intent(i));
     }
     //endregion
 }
